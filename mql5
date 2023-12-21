@@ -1,0 +1,82 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                        Evening Scalper Pro MT5  |
+//|                                  Developer's Site: forexroboteasy.com |
+//|                                      Developed by: Forex Robot Easy Team |
+//+------------------------------------------------------------------+
+
+// Define the currency pairs to be traded
+string currencyPairs[] = {'EURNZD', 'EURAUD', 'AUDNZD', 'NZDCAD', 'AUDCAD',
+                          'EURGBP', 'GBPAUD', 'GBPCAD'};
+int numPairs = ArraySize(currencyPairs);
+
+// Define the trading session
+int startHour = 19;
+int endHour = 23;
+
+// Define the rollover hours to be avoided
+int rolloverStartHour = 0;
+int rolloverEndHour = 1;
+
+//+------------------------------------------------------------------+
+//|                        Custom Trading Functions                  |
+//+------------------------------------------------------------------+
+
+// Function to check if current time is within the specified session
+bool isInSession()
+{
+   datetime currentTime = TimeLocal();
+   int currentHour = TimeHour(currentTime);
+
+   if (currentHour >= startHour && currentHour < endHour)
+      return true;
+
+   return false;
+}
+
+// Function to check if current time is within the rollover period
+bool isRollover()
+{
+   datetime currentTime = TimeLocal();
+   int currentHour = TimeHour(currentTime);
+
+   if (currentHour >= rolloverStartHour && currentHour < rolloverEndHour)
+      return true;
+
+   return false;
+}
+
+// Function to enter a market order
+void enterMarketOrder(string symbol, int type, double volume)
+{
+   // Add code to enter the market order here
+}
+
+// Function to exit a market order
+void exitMarketOrder(string symbol)
+{
+   // Add code to exit the market order here
+}
+
+// Function to implement the unique trading logic
+void tradeLogic()
+{
+   // Add code to implement the unique trading logic here
+}
+
+//+------------------------------------------------------------------+
+//|                      Expert Advisor Start Function                |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Check if current time is within the trading session
+   if (!isInSession())
+      return;
+
+   // Check if current time is within the rollover period
+   if (isRollover())
+      return;
+
+   // Implement the trading logic
+   tradeLogic();
+}
